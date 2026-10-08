@@ -4,11 +4,11 @@
 
 Read:
 
-1. `README.md`
-2. `PLAN.md`
-3. `ARCHITECTURE.md`
-4. `DEVELOPMENT.md`
-5. `DECISIONS.md`
+1. `README.md` — what RepoVista is and why it exists
+2. `PLAN.md` — what is being built now
+3. `ARCHITECTURE.md` — how data flows
+4. `DECISIONS.md` — choices that are already accepted
+5. `DEVELOPMENT.md` — how to run the project
 
 ## Principles
 
@@ -45,7 +45,31 @@ Project Service
 GitHub Client / Metadata
 ```
 
-If a new architectural pattern is required, document it in `DECISIONS.md`.
+Accepted constraints, until a new decision supersedes them:
+
+- GitHub is the source of truth for live repository information.
+- RepoVista metadata is the source of truth for presentation and storytelling.
+- The UI consumes the normalized `Project` model.
+- GitHub access stays server-side. Never expose `GITHUB_TOKEN` to the browser.
+- No database in V1.
+- No Redux or Zustand initially.
+- Search and filter operate on the normalized project dataset.
+- Prefer Next.js Server Components.
+
+If a new architectural pattern is required, document it in `DECISIONS.md` before building it.
+
+## Which Document to Update
+
+| You changed | Update |
+| --- | --- |
+| Purpose, stack, or how to start | `README.md` |
+| Data flow, layers, or boundaries | `ARCHITECTURE.md` |
+| Scope or progress | `PLAN.md` |
+| What a visitor can do | `USER_GUIDE.md` |
+| Setup or engineering workflow | `DEVELOPMENT.md` |
+| An architectural choice | `DECISIONS.md` |
+| A meaningful release note | `CHANGELOG.md` |
+| Contribution rules | `CONTRIBUTING.md` |
 
 ## Pull Requests
 

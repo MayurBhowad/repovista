@@ -6,17 +6,16 @@ All meaningful project changes are recorded here.
 
 ### Added
 
+- Documentation system for ongoing alignment: README, architecture, plan, user guide, development guide, decision log, changelog, and contributing guide.
+- The decision log records the agreed V1 boundaries: GitHub versus RepoVista metadata, the normalized `Project` model, server-side GitHub access, no database, Server Components, local search and filter, and no Redux or Zustand.
 - Next.js application scaffold with the App Router, strict TypeScript, Tailwind CSS, ESLint, shadcn/ui, and the `@/*` import alias.
-- Initial RepoVista documentation structure.
-- Project architecture documentation.
-- Master implementation plan.
-- User guide.
-- Development guide.
-- Architecture decision log.
+- Placeholder modules for the GitHub client, repository queries, project metadata, mapper, and project service.
+- Initial `Project` and `ProjectCategory` types.
+- Placeholder routes for `/` and `/repositories/[name]`.
 
 ### Changed
 
-Nothing yet.
+- The plan now distinguishes Phase 1 scaffolding from implemented behavior. The initial `Project` type is in progress. GitHub and project modules are still placeholders.
 
 ### Fixed
 

@@ -17,20 +17,23 @@
 - [x] Configure shadcn/ui
 - [x] Configure ESLint
 - [x] Add strict TypeScript
-- [x] Add initial project documentation
+- [x] Add the documentation system (`README`, `ARCHITECTURE`, `PLAN`, `USER_GUIDE`, `DEVELOPMENT`, `DECISIONS`, `CHANGELOG`, `CONTRIBUTING`)
 - [x] Verify `pnpm lint`
 - [x] Verify `pnpm typecheck`
 - [x] Verify `pnpm build`
 
 ## Phase 1 — Domain and Data Architecture
 
-- [ ] Define `Project` domain model
-- [ ] Define GitHub API types
-- [ ] Create GitHub client
-- [ ] Add Zod validation
-- [ ] Create project metadata model
-- [ ] Create project mapper
-- [ ] Create project service
+Scaffolding is in the tree. Behavior is not implemented yet, except for the initial `Project` type.
+
+- [~] Define `Project` domain model (`src/types/project.ts` has the initial type; storytelling fields from `ARCHITECTURE.md` are still missing)
+- [ ] Define GitHub API types (`src/lib/github/types.ts` is a placeholder)
+- [ ] Create GitHub client (`src/lib/github/client.ts` is a placeholder)
+- [ ] Add Zod validation for GitHub responses (Zod is installed and unused)
+- [ ] Create project metadata model (`src/lib/projects/metadata.ts` is a placeholder)
+- [ ] Create project mapper (`src/lib/projects/mapper.ts` is a placeholder)
+- [ ] Create project service (`src/lib/projects/service.ts` is a placeholder)
+- [ ] Load repositories for `GITHUB_USERNAME` (`src/lib/github/repositories.ts` is a placeholder)
 - [ ] Add server-side caching/revalidation
 - [ ] Add graceful GitHub API error handling
 
@@ -68,9 +71,11 @@
 - [ ] URL-based search/filter state
 - [ ] Responsive refinement
 
+Search and filter run on the normalized `Project[]` from Phase 1. They do not call GitHub per keystroke.
+
 ## Phase 5 — Project Detail
 
-- [ ] Build `/repositories/[name]`
+- [ ] Build `/repositories/[name]` (the route exists and renders a placeholder)
 - [ ] Project header
 - [ ] Project story
 - [ ] Technology section
@@ -105,7 +110,9 @@
 
 **Phase 1 — Domain and Data Architecture**
 
-Phase 0 is complete. Do not jump ahead to later phases until the current phase is stable.
+Phase 0 is complete. The running app shows a placeholder home page and a placeholder repository page. Finish the project service, mapper, metadata, and GitHub client before building gallery UI.
+
+What a new developer should treat as already decided is recorded in `DECISIONS.md`. Do not reopen those choices inside a feature branch.
 
 ## Rules for Updating This Plan
 
