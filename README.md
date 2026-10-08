@@ -52,4 +52,4 @@ pnpm build
 
 ## Status
 
-RepoVista is currently in the foundation/setup phase. The implementation should follow `PLAN.md` and the architecture defined in `ARCHITECTURE.md`.
+The application foundation is in place. Further implementation should follow `PLAN.md` and the architecture defined in `ARCHITECTURE.md`.

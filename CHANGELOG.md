@@ -6,6 +6,7 @@ All meaningful project changes are recorded here.
 
 ### Added
 
+- Next.js application scaffold with the App Router, strict TypeScript, Tailwind CSS, ESLint, shadcn/ui, and the `@/*` import alias.
 - Initial RepoVista documentation structure.
 - Project architecture documentation.
 - Master implementation plan.

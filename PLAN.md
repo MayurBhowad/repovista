@@ -11,16 +11,16 @@
 
 ## Phase 0 — Foundation
 
-- [ ] Create GitHub repository
-- [ ] Initialize Next.js + TypeScript + App Router
-- [ ] Configure Tailwind CSS
-- [ ] Configure shadcn/ui
-- [ ] Configure ESLint
-- [ ] Add strict TypeScript
-- [ ] Add initial project documentation
-- [ ] Verify `pnpm lint`
-- [ ] Verify `pnpm typecheck`
-- [ ] Verify `pnpm build`
+- [x] Create GitHub repository
+- [x] Initialize Next.js + TypeScript + App Router
+- [x] Configure Tailwind CSS
+- [x] Configure shadcn/ui
+- [x] Configure ESLint
+- [x] Add strict TypeScript
+- [x] Add initial project documentation
+- [x] Verify `pnpm lint`
+- [x] Verify `pnpm typecheck`
+- [x] Verify `pnpm build`
 
 ## Phase 1 — Domain and Data Architecture
 
@@ -103,9 +103,9 @@
 
 ## Current Focus
 
-**Phase 0 — Foundation**
+**Phase 1 — Domain and Data Architecture**
 
-Do not jump ahead to later phases until the current phase is stable.
+Phase 0 is complete. Do not jump ahead to later phases until the current phase is stable.
 
 ## Rules for Updating This Plan
 
