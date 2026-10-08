@@ -1,10 +1,12 @@
 # RepoVista User Guide
 
+This guide describes the experience RepoVista is being built to provide. The running application is still a placeholder: the home page introduces the name, and `/repositories/[name]` says the detail view is coming soon. Search, filters, cards, and case-study sections below are the intended product, not features that work today. Implementation order is in `PLAN.md`.
+
 ## What Is RepoVista?
 
 RepoVista is a visual way to explore software projects.
 
-Instead of requiring users to understand GitHub terminology, RepoVista answers:
+GitHub answers where the code lives. RepoVista answers:
 
 - What is this project?
 - Why was it built?
@@ -27,7 +29,7 @@ Users can:
 
 ## Project Cards
 
-Each project card should prioritize human-friendly information:
+Each project card prioritizes human-friendly information:
 
 - Project name
 - Short description
@@ -38,11 +40,11 @@ Each project card should prioritize human-friendly information:
 - Last updated
 - Explore action
 
-Technical GitHub information should support the story rather than dominate it.
+Technical GitHub information supports the story. It does not dominate the card.
 
 ## Project Detail
 
-A project detail page explains the project as a small case study.
+A project detail page explains the project as a small case study at `/repositories/[name]`.
 
 Expected sections:
 
@@ -56,18 +58,20 @@ Expected sections:
 
 ## Search
 
-Search should help users discover projects by:
+Search helps users discover projects by:
 
 - Name
 - Description
 - Technology
 - Topic
 
-Search should feel instant and should not make a GitHub API request for every keystroke.
+Search feels immediate because it runs on projects the server has already loaded. It does not call the GitHub API on every keystroke.
+
+A search can be shared with a URL such as `/?search=ai`.
 
 ## Filters
 
-Users can filter projects by categories such as:
+Users can filter projects by:
 
 - AI
 - Backend
@@ -77,11 +81,13 @@ Users can filter projects by categories such as:
 - Desktop
 - Learning
 
+A filter can be shared with a URL such as `/?category=AI` or `/?category=AI&search=document`.
+
 ## Accessibility
 
-Users should be able to navigate the application with a keyboard and understand the interface with assistive technologies.
+Users can navigate the application with a keyboard and understand the interface with assistive technologies.
 
-Motion should respect reduced-motion preferences.
+Motion respects reduced-motion preferences.
 
 ## Design Principle
 
@@ -89,6 +95,4 @@ RepoVista should always feel like:
 
 > A beautiful project gallery powered by GitHub.
 
-It should not feel like:
-
-> GitHub with a different skin.
+The gallery explains the work. Repository statistics stay available as supporting facts.

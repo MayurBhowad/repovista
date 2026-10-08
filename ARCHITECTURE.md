@@ -7,7 +7,7 @@ RepoVista has two sources of truth:
 1. **GitHub** owns live repository facts.
 2. **RepoVista metadata** owns presentation and storytelling.
 
-The UI consumes a normalized `Project` domain model and should never depend directly on raw GitHub API responses.
+The UI consumes a normalized `Project` domain model. UI code must not depend on raw GitHub API responses.
 
 ```text
 GitHub API
@@ -32,6 +32,7 @@ RepoVista Metadata -+--> Mapper --> Project Service --> Project[]
 
 - Repository name
 - GitHub URL
+- Homepage URL
 - Stars
 - Forks
 - Primary language
@@ -52,7 +53,23 @@ RepoVista Metadata -+--> Mapper --> Project Service --> Project[]
 - Learning
 - Presentation order
 
-## 3. Layers
+When both sources provide a description, the normalized `Project` uses the RepoVista description. The GitHub description is the fallback when curated copy is missing.
+
+## 3. Normalized Project
+
+Server Components receive `Project` values from the project service. The agreed model combines both sources of truth:
+
+| Field | Source |
+| --- | --- |
+| Repository name, URL, homepage, language, topics, stars, forks, updated time | GitHub |
+| Human-friendly title and description | RepoVista, with GitHub description as fallback |
+| Category, featured, image, story, problem, solution, learning, order | RepoVista |
+
+`ProjectCategory` is one of: `AI`, `Backend`, `Frontend`, `Database`, `DevTools`, `Desktop`, `Learning`.
+
+The type in `src/types/project.ts` is the start of this model. It currently includes name, description, category, repository URL, homepage URL, language, topics, stars, forks, and updated time. Storytelling fields (title override, featured, image, story, problem, solution, learning, and order) are part of the agreed model and are not on the type yet. Add them in the project layer. Do not invent a second model in the UI.
+
+## 4. Layers
 
 ### GitHub layer
 
@@ -60,14 +77,19 @@ Location:
 
 ```text
 src/lib/github/
+  client.ts         server-side HTTP client
+  repositories.ts   repository queries for GITHUB_USERNAME
+  types.ts          GitHub response types, kept out of the UI
 ```
 
 Responsibilities:
 
-- Communicate with GitHub REST API.
-- Authenticate server-side when a token is available.
+- Communicate with the GitHub REST API.
+- Authenticate server-side when `GITHUB_TOKEN` is available.
 - Validate external data.
 - Hide GitHub-specific response structures from the rest of the application.
+
+These modules are placeholders. They must not be called from components.
 
 ### Project layer
 
@@ -75,6 +97,9 @@ Location:
 
 ```text
 src/lib/projects/
+  metadata.ts   curated presentation data
+  mapper.ts     GitHub data + metadata -> Project
+  service.ts    functions Server Components call
 ```
 
 Responsibilities:
@@ -84,23 +109,34 @@ Responsibilities:
 - Provide project-oriented service functions.
 - Apply defaults when metadata is missing.
 
+These modules are placeholders. The service is the only project API the UI should use.
+
 ### Domain layer
 
 Location:
 
 ```text
-src/types/
+src/types/project.ts
 ```
 
-Contains stable application-level types such as `Project` and `ProjectCategory`.
+Contains the application-level `Project` and `ProjectCategory` types.
 
 ### UI layer
 
 Location:
 
 ```text
-src/components/
+src/app/                         routes (Server Components by default)
+src/components/layout/           shell, navigation, header
+src/components/home/             gallery, hero, statistics
+src/components/repository/       project detail
+src/components/ui/               shared primitives
 ```
+
+Current routes:
+
+- `/` — home placeholder in `src/app/page.tsx`
+- `/repositories/[name]` — detail placeholder in `src/app/repositories/[name]/page.tsx`
 
 Responsibilities:
 
@@ -108,7 +144,7 @@ Responsibilities:
 - Handle presentation and interaction.
 - Never call GitHub directly.
 
-## 4. Server/Client Boundary
+## 5. Server/Client Boundary
 
 Prefer Server Components.
 
@@ -131,15 +167,15 @@ Normalized Project[]
 UI
 ```
 
-Client Components should only be introduced where browser interactivity is required, such as search/filter controls, theme controls, or animations.
+Client Components are only for browser interactivity, such as search and filter controls, theme controls, or animation. They receive `Project` data that a Server Component already loaded.
 
-## 5. Search, Filter and Sort
+## 6. Search, Filter, and Sort
 
-For the initial version, repositories are fetched server-side and normalized into a manageable `Project[]`.
+Repositories are fetched server-side and normalized into `Project[]`.
 
-Search/filter/sort should operate on that dataset rather than making a GitHub request for every keystroke.
+Search, filter, and sort operate on that dataset. They do not call GitHub on each keystroke.
 
-URL search parameters should represent shareable UI state where useful:
+URL search parameters represent shareable UI state:
 
 ```text
 /?search=ai
@@ -147,7 +183,7 @@ URL search parameters should represent shareable UI state where useful:
 /?category=AI&search=document
 ```
 
-## 6. Repository Detail
+## 7. Repository Detail
 
 Route:
 
@@ -155,33 +191,29 @@ Route:
 /repositories/[name]
 ```
 
-The detail page should retrieve the requested repository and merge it with RepoVista metadata.
+The detail page loads the requested repository and merges it with RepoVista metadata through the project service.
 
-The detail page is a project case-study experience, not a GitHub clone.
+The page is a project case study. It is not a GitHub repository clone.
 
-## 7. Caching
+## 8. Caching
 
-GitHub responses should be cached/revalidated using Next.js server-side mechanisms.
+GitHub responses are cached and revalidated with Next.js server-side mechanisms.
 
-Do not request GitHub data on every browser interaction.
+The browser does not request GitHub data on each interaction.
 
-## 8. Security
+## 9. Security
 
-`GITHUB_TOKEN` must remain server-side.
+`GITHUB_TOKEN` and `GITHUB_USERNAME` are read on the server from the environment.
 
-Never expose it as:
+The token must never be exposed as `NEXT_PUBLIC_GITHUB_TOKEN`, passed to a Client Component, or committed. `.env.local` stays untracked. `.env.example` lists the variable names only.
 
-```text
-NEXT_PUBLIC_GITHUB_TOKEN
-```
+Treat GitHub responses as untrusted input. Validate them before they become a `Project`.
 
-Never place secrets in source control.
-
-## 9. Deliberate Non-Goals for V1
+## 10. Deliberate Non-Goals for V1
 
 Do not add:
 
-- Database
+- A database
 - Prisma
 - Redux
 - Zustand
@@ -189,6 +221,6 @@ Do not add:
 - Authentication
 - GitHub webhooks
 - Multi-user accounts
-- Complex backend services
+- A separate backend service
 
-These can be reconsidered only when a real requirement appears.
+Reconsider one of these only when a real requirement appears, and record that change in `DECISIONS.md` before implementing it.
