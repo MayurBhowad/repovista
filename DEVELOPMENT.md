@@ -83,7 +83,7 @@ src/components/repository/  detail UI
 src/components/ui/          shared primitives
 src/lib/github/             server-side GitHub access only
 src/lib/projects/           metadata, mapper, and project service
-src/types/project.ts        Project and ProjectCategory
+src/types/project.ts        Project, ProjectCategory, GitHub info, story metadata
 ```
 
 Imports use the `@/` alias, which maps to `src/`.
