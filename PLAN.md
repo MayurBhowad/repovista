@@ -24,9 +24,9 @@
 
 ## Phase 1 — Domain and Data Architecture
 
-Scaffolding is in the tree. Behavior is not implemented yet, except for the initial `Project` type.
+Scaffolding is in the tree. The `Project` domain model is defined. GitHub access, metadata, mapping, and the project service are not implemented yet.
 
-- [~] Define `Project` domain model (`src/types/project.ts` has the initial type; storytelling fields from `ARCHITECTURE.md` are still missing)
+- [x] Define `Project` domain model (`ProjectCategory`, `ProjectGitHubInfo`, `ProjectStoryMetadata`, and `Project` in `src/types/project.ts`)
 - [ ] Define GitHub API types (`src/lib/github/types.ts` is a placeholder)
 - [ ] Create GitHub client (`src/lib/github/client.ts` is a placeholder)
 - [ ] Add Zod validation for GitHub responses (Zod is installed and unused)

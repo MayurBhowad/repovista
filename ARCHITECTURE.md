@@ -65,9 +65,16 @@ Server Components receive `Project` values from the project service. The agreed 
 | Human-friendly title and description | RepoVista, with GitHub description as fallback |
 | Category, featured, image, story, problem, solution, learning, order | RepoVista |
 
-`ProjectCategory` is one of: `AI`, `Backend`, `Frontend`, `Database`, `DevTools`, `Desktop`, `Learning`.
+`ProjectCategory` is one of: `AI`, `Backend`, `Frontend`, `Database`, `DevTools`, `Desktop`, `Learning`. The allowed values live in `PROJECT_CATEGORIES` in `src/types/project.ts`.
 
-The type in `src/types/project.ts` is the start of this model. It currently includes name, description, category, repository URL, homepage URL, language, topics, stars, forks, and updated time. Storytelling fields (title override, featured, image, story, problem, solution, learning, and order) are part of the agreed model and are not on the type yet. Add them in the project layer. Do not invent a second model in the UI.
+`Project` is `ProjectGitHubInfo & ProjectStoryMetadata`:
+
+| Type | Fields |
+| --- | --- |
+| `ProjectGitHubInfo` | `name`, `repositoryUrl`, `homepageUrl`, `language`, `topics`, `stars`, `forks`, `updatedAt` |
+| `ProjectStoryMetadata` | `title`, `description`, `category`, `featured`, `image`, `story`, `problem`, `solution`, `learning`, `order` |
+
+`description` on `Project` is already resolved: RepoVista copy when it exists, otherwise the public GitHub description. These types are the only project model the UI imports. Do not invent a second model in components, and do not import GitHub API response types outside `src/lib/github/`.
 
 ## 4. Layers
 
@@ -119,7 +126,7 @@ Location:
 src/types/project.ts
 ```
 
-Contains the application-level `Project` and `ProjectCategory` types.
+Contains `ProjectCategory`, `ProjectGitHubInfo`, `ProjectStoryMetadata`, and the composed `Project` type. Server and UI layers both import from here.
 
 ### UI layer
 
