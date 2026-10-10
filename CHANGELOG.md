@@ -10,13 +10,13 @@ All meaningful project changes are recorded here.
 - Documentation system for ongoing alignment: README, architecture, plan, user guide, development guide, decision log, changelog, and contributing guide.
 - The decision log records the agreed V1 boundaries: GitHub versus RepoVista metadata, the normalized `Project` model, server-side GitHub access, no database, Server Components, local search and filter, and no Redux or Zustand.
 - Next.js application scaffold with the App Router, strict TypeScript, Tailwind CSS, ESLint, shadcn/ui, and the `@/*` import alias.
-- Placeholder modules for the GitHub client, repository queries, project metadata, mapper, and project service.
+- Project metadata layer in `src/lib/projects/`: a curated catalog (title, description, category, technologies, featured, image, nested story, and order), a mapper from a validated GitHub repository plus that catalog into `Project`, and a server-only project service. Repositories without metadata still become projects. Curated description and technologies win over the GitHub description and topics.
 - `Project` domain model in `src/types/project.ts`: `ProjectCategory`, normalized `ProjectGitHubInfo`, `ProjectStoryMetadata`, and the composed `Project` type shared by the server and UI.
 - Placeholder routes for `/` and `/repositories/[name]`.
 
 ### Changed
 
-- The plan now distinguishes Phase 1 scaffolding from implemented behavior. The `Project` domain model is defined. GitHub and project modules are still placeholders.
+- `Project` now includes `technologies`. The project service is the data API for pages. GitHub response types stay in `src/lib/github/`.
 
 ### Fixed
 

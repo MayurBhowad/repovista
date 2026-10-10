@@ -45,6 +45,7 @@ RepoVista Metadata -+--> Mapper --> Project Service --> Project[]
 - Human-friendly title
 - Human-friendly description
 - Category
+- Technologies
 - Featured status
 - Project image
 - Project story
@@ -63,6 +64,7 @@ Server Components receive `Project` values from the project service. The agreed 
 | --- | --- |
 | Repository name, URL, homepage, language, topics, stars, forks, updated time | GitHub |
 | Human-friendly title and description | RepoVista, with GitHub description as fallback |
+| Technologies | RepoVista when curated, otherwise GitHub topics |
 | Category, featured, image, story, problem, solution, learning, order | RepoVista |
 
 `ProjectCategory` is one of: `AI`, `Backend`, `Frontend`, `Database`, `DevTools`, `Desktop`, `Learning`. The allowed values live in `PROJECT_CATEGORIES` in `src/types/project.ts`.
@@ -72,7 +74,7 @@ Server Components receive `Project` values from the project service. The agreed 
 | Type | Fields |
 | --- | --- |
 | `ProjectGitHubInfo` | `name`, `repositoryUrl`, `homepageUrl`, `language`, `topics`, `stars`, `forks`, `updatedAt` |
-| `ProjectStoryMetadata` | `title`, `description`, `category`, `featured`, `image`, `story`, `problem`, `solution`, `learning`, `order` |
+| `ProjectStoryMetadata` | `title`, `description`, `category`, `technologies`, `featured`, `image`, `story`, `problem`, `solution`, `learning`, `order` |
 
 `description` on `Project` is already resolved: RepoVista copy when it exists, otherwise the public GitHub description. These types are the only project model the UI imports. Do not invent a second model in components, and do not import GitHub API response types outside `src/lib/github/`.
 
@@ -117,7 +119,11 @@ Responsibilities:
 - Provide project-oriented service functions.
 - Apply defaults when metadata is missing.
 
-These modules are placeholders. The service is the only project API the UI should use.
+The service is the only project API the UI should use. `getProjects` and `getProject` return `Project` values. A repository with no catalog entry still becomes a project: the title falls back to the repository name, the description falls back to the GitHub description, technologies fall back to GitHub topics, featured is false, and story fields are null.
+
+Metadata stores story as `{ problem, solution, learning }`. The mapper copies those onto `Project.problem`, `Project.solution`, and `Project.learning`. `Project.story` stays null until a narrative summary is added. Curated technologies replace that fallback when the list is present, including when it is empty. Presentation `order` is optional; omitted entries sort after curated ones, keeping GitHub's recently-updated order.
+
+Image values are kept only when they are a site path or an `https` URL. Other image values become null. Homepage values are kept only for `http` and `https` URLs without embedded credentials.
 
 ### Domain layer
 
@@ -215,7 +221,7 @@ The browser does not request GitHub data on each interaction.
 
 The token must never be exposed as `NEXT_PUBLIC_GITHUB_TOKEN`, passed to a Client Component, or committed. `.env.local` stays untracked. `.env.example` lists the variable names only.
 
-Treat GitHub responses as untrusted input. Validate them before they become a `Project`.
+Treat GitHub responses as untrusted input. Validate them before they become a `Project`. The mapper also checks curated image and link values before they are copied onto `Project`, and it rebuilds a `github.com` repository URL when `html_url` is not a safe https URL.
 
 ## 10. Deliberate Non-Goals for V1
 

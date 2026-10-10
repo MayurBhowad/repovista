@@ -13,6 +13,7 @@
 | [005](#decision-005--prefer-server-components) | Accepted | Load the initial project data in Server Components. |
 | [006](#decision-006--searchfilter-locally) | Accepted | Search, filter, and sort the normalized dataset. |
 | [007](#decision-007--no-reduxzustand-initially) | Accepted | No Redux or Zustand until a real need appears. |
+| [008](#decision-008--curated-technologies-and-nested-story) | Accepted | Curated technologies and a nested story map onto `Project`. |
 
 ## Decision 001 — GitHub + RepoVista Metadata
 
@@ -135,6 +136,20 @@ The expected repository count is small enough for this to be efficient, and it a
 The application can use Server Components, local React state, and URL search parameters for its current requirements.
 
 **Consequences:** Do not add Redux, Zustand, or a similar store as part of the gallery, search, or detail work. A later decision is required before adding one.
+
+---
+
+## Decision 008 — Curated Technologies and Nested Story
+
+**Status:** Accepted
+
+**Decision:** Curated metadata may include `technologies` and a `story` object with `problem`, `solution`, and `learning`. The mapper copies that object onto the flat `Project` fields. `Project.technologies` uses the curated list when it is present, and GitHub topics otherwise. `Project.topics` stays the GitHub topic list. `Project.story` remains a narrative string and is null when the catalog only provides the three story parts.
+
+**Why:**
+
+Cards and search need a technology list that can be written for people, separately from GitHub topics. Story content is authored as one object. The UI still receives the existing `Project` model, so it does not read GitHub field names. A missing catalog entry must not drop a repository.
+
+**Consequences:** `technologies` is part of `ProjectStoryMetadata`. Repositories without metadata still become projects with defaults. Adding a narrative summary later is a new metadata field; it is not derived by joining problem, solution, and learning.
 
 ---
 

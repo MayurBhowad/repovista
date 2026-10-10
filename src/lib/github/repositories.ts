@@ -16,8 +16,8 @@ import {
 /**
  * Public repository queries for `GITHUB_USERNAME`.
  *
- * Pages should use the project service once it exists. They must not import
- * this module.
+ * Pages should use the project service in `src/lib/projects/service.ts`.
+ * They must not import this module.
  */
 
 const PAGE_SIZE = 100;
