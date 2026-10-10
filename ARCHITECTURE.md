@@ -93,10 +93,11 @@ Responsibilities:
 
 - Communicate with the GitHub REST API.
 - Authenticate server-side when `GITHUB_TOKEN` is available.
-- Validate external data.
+- Validate external data with Zod.
+- Normalize failures as `GitHubApiError`.
 - Hide GitHub-specific response structures from the rest of the application.
 
-These modules are placeholders. They must not be called from components.
+These modules must not be called from components. `server-only` makes a Client Component import fail the build.
 
 ### Project layer
 
@@ -204,7 +205,7 @@ The page is a project case study. It is not a GitHub repository clone.
 
 ## 8. Caching
 
-GitHub responses are cached and revalidated with Next.js server-side mechanisms.
+GitHub responses are cached and revalidated with Next.js server-side mechanisms. The client revalidates successful responses after one hour and tags them `github`. Redirects are not followed, so the bearer token stays on `api.github.com`.
 
 The browser does not request GitHub data on each interaction.
 

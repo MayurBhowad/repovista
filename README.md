@@ -72,4 +72,4 @@ pnpm build
 
 ## Status
 
-Phase 0 (application foundation) is complete. Current work is Phase 1: the domain and data path. Placeholder modules exist under `src/lib/github/` and `src/lib/projects/`. The home page and `/repositories/[name]` are placeholders. Follow [Plan](./PLAN.md) and do not skip ahead of the current phase.
+Phase 0 (application foundation) is complete. Current work is Phase 1: the domain and data path. The server-side GitHub layer is implemented. Project metadata, mapping, and the project service are still placeholders, as are the home page and `/repositories/[name]`. Follow [Plan](./PLAN.md) and do not skip ahead of the current phase.
