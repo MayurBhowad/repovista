@@ -149,8 +149,10 @@ src/components/ui/               shared primitives
 
 Current routes:
 
-- `/` — home placeholder in `src/app/page.tsx`
-- `/repositories/[name]` — detail placeholder in `src/app/repositories/[name]/page.tsx`
+- `/` — home inside the application shell. Gallery content is not built yet.
+- `/repositories/[name]` — detail placeholder inside the same shell.
+
+The shell lives in `src/components/layout/`. Theme is a `dark` class on `html`, applied in the browser. Server Components do not read it.
 
 Responsibilities:
 

@@ -14,6 +14,7 @@
 | [006](#decision-006--searchfilter-locally) | Accepted | Search, filter, and sort the normalized dataset. |
 | [007](#decision-007--no-reduxzustand-initially) | Accepted | No Redux or Zustand until a real need appears. |
 | [008](#decision-008--curated-technologies-and-nested-story) | Accepted | Curated technologies and a nested story map onto `Project`. |
+| [009](#decision-009--class-based-theme) | Accepted | Theme is a document class and a browser preference, not a store. |
 
 ## Decision 001 — GitHub + RepoVista Metadata
 
@@ -150,6 +151,20 @@ The application can use Server Components, local React state, and URL search par
 Cards and search need a technology list that can be written for people, separately from GitHub topics. Story content is authored as one object. The UI still receives the existing `Project` model, so it does not read GitHub field names. A missing catalog entry must not drop a repository.
 
 **Consequences:** `technologies` is part of `ProjectStoryMetadata`. Repositories without metadata still become projects with defaults. Adding a narrative summary later is a new metadata field; it is not derived by joining problem, solution, and learning.
+
+---
+
+## Decision 009 — Class-Based Theme
+
+**Status:** Accepted
+
+**Decision:** Light and dark appearance is a `dark` class on `html`. The first visit follows the system appearance. After the header control is used, the choice is stored in `localStorage`. There is no theme library and no global store.
+
+**Why:**
+
+Theme is a view preference, not project data. Tailwind already switches tokens from the `dark` class. A store would add client state the shell does not need, which Decision 007 already avoids.
+
+**Consequences:** Server Components do not read the theme. The blocking script that applies the class is static and contains no request data. Do not add `next-themes`, Redux, or Zustand for this preference unless a later decision says so.
 
 ---
 
