@@ -1,6 +1,6 @@
 # RepoVista User Guide
 
-This guide describes the experience RepoVista is being built to provide. The running application is still a placeholder: the home page introduces the name, and `/repositories/[name]` says the detail view is coming soon. Search, filters, cards, and case-study sections below are the intended product, not features that work today. Implementation order is in `PLAN.md`.
+This guide describes the experience RepoVista is being built to provide. The application shell is in place: a sidebar on wider screens, a header, a menu on smaller screens, and a light/dark theme. The home page introduces the collection, and `/repositories/[name]` says the detail view is coming soon. Search, filters, cards, and case-study sections below are the intended product, not features that work today. Implementation order is in `PLAN.md`.
 
 ## What Is RepoVista?
 
@@ -13,6 +13,17 @@ GitHub answers where the code lives. RepoVista answers:
 - What does it do?
 - What technologies does it use?
 - Where can I learn more?
+
+## Moving around
+
+The frame is the same on every page.
+
+- **Sidebar** on wider screens: RepoVista, a short description, and Explore.
+- **Header**: the theme control. On smaller screens it also shows the menu and the name.
+- **Menu** on smaller screens: the same destinations as the sidebar. Escape or Close menu dismisses it.
+- **Theme**: the header control switches light and dark. The first visit follows the device appearance. The choice stays in this browser.
+
+A skip link is the first control when navigating with a keyboard.
 
 ## Home
 

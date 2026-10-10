@@ -39,13 +39,13 @@ The `Project` domain model, GitHub access, curated metadata, mapper, and project
 
 ## Phase 2 — Visual Foundation
 
-- [ ] Establish typography
-- [ ] Establish light theme
-- [ ] Establish dark theme
-- [ ] Build application shell
-- [ ] Build desktop sidebar
-- [ ] Build mobile navigation
-- [ ] Build header
+- [x] Establish typography
+- [x] Establish light theme
+- [x] Establish dark theme
+- [x] Build application shell
+- [x] Build desktop sidebar
+- [x] Build mobile navigation
+- [x] Build header
 - [ ] Build hero section
 - [ ] Build statistics section
 
@@ -110,7 +110,7 @@ Search and filter run on the normalized `Project[]` from Phase 1. They do not ca
 
 **Phase 2 — Visual Foundation**
 
-Phase 1 is complete. The running app still shows a placeholder home page and a placeholder repository page. GitHub access, curated metadata, the mapper, and the project service are in place. Next, build the visual foundation. Pages should call the project service and should not import `src/lib/github/`.
+The application shell is in place: sidebar, header, mobile navigation, page container, and light/dark theme. Home and `/repositories/[name]` still do not show projects. Next are the hero and statistics sections, then the gallery. Pages should call the project service and should not import `src/lib/github/`.
 
 What a new developer should treat as already decided is recorded in `DECISIONS.md`. Do not reopen those choices inside a feature branch.
 
