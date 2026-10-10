@@ -24,15 +24,15 @@
 
 ## Phase 1 — Domain and Data Architecture
 
-Scaffolding is in the tree. The `Project` domain model is defined. GitHub access is implemented. Metadata, mapping, and the project service are not implemented yet.
+The `Project` domain model, GitHub access, curated metadata, mapper, and project service are implemented. Pages are still placeholders and do not call the service yet.
 
 - [x] Define `Project` domain model (`ProjectCategory`, `ProjectGitHubInfo`, `ProjectStoryMetadata`, and `Project` in `src/types/project.ts`)
 - [x] Define GitHub API types (`src/lib/github/types.ts`)
 - [x] Create GitHub client (`src/lib/github/client.ts`)
 - [x] Add Zod validation for GitHub responses
-- [ ] Create project metadata model (`src/lib/projects/metadata.ts` is a placeholder)
-- [ ] Create project mapper (`src/lib/projects/mapper.ts` is a placeholder)
-- [ ] Create project service (`src/lib/projects/service.ts` is a placeholder)
+- [x] Create project metadata model (`src/lib/projects/metadata.ts`)
+- [x] Create project mapper (`src/lib/projects/mapper.ts`)
+- [x] Create project service (`src/lib/projects/service.ts`)
 - [x] Load repositories for `GITHUB_USERNAME` (`src/lib/github/repositories.ts`)
 - [x] Add server-side caching/revalidation
 - [x] Add graceful GitHub API error handling
@@ -108,9 +108,9 @@ Search and filter run on the normalized `Project[]` from Phase 1. They do not ca
 
 ## Current Focus
 
-**Phase 1 — Domain and Data Architecture**
+**Phase 2 — Visual Foundation**
 
-Phase 0 is complete. The running app shows a placeholder home page and a placeholder repository page. The GitHub client, repository queries, and response validation are in place. Finish the project service, mapper, and metadata before building gallery UI.
+Phase 1 is complete. The running app still shows a placeholder home page and a placeholder repository page. GitHub access, curated metadata, the mapper, and the project service are in place. Next, build the visual foundation. Pages should call the project service and should not import `src/lib/github/`.
 
 What a new developer should treat as already decided is recorded in `DECISIONS.md`. Do not reopen those choices inside a feature branch.
 

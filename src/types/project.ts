@@ -50,10 +50,19 @@ export interface ProjectStoryMetadata {
    */
   readonly description: string | null;
   readonly category: ProjectCategory | null;
+  /**
+   * Technologies shown in the UI. Curated metadata wins when it is present.
+   * Otherwise the mapper uses GitHub topics.
+   */
+  readonly technologies: readonly string[];
   /** Defaults to false when metadata does not mark the project as featured. */
   readonly featured: boolean;
   /** Project image URL or path. Null when no image is curated. */
   readonly image: string | null;
+  /**
+   * Optional narrative summary. Null when curated metadata only provides
+   * problem, solution, and learning.
+   */
   readonly story: string | null;
   readonly problem: string | null;
   readonly solution: string | null;
