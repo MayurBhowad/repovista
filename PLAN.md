@@ -24,18 +24,18 @@
 
 ## Phase 1 — Domain and Data Architecture
 
-Scaffolding is in the tree. The `Project` domain model is defined. GitHub access, metadata, mapping, and the project service are not implemented yet.
+Scaffolding is in the tree. The `Project` domain model is defined. GitHub access is implemented. Metadata, mapping, and the project service are not implemented yet.
 
 - [x] Define `Project` domain model (`ProjectCategory`, `ProjectGitHubInfo`, `ProjectStoryMetadata`, and `Project` in `src/types/project.ts`)
-- [ ] Define GitHub API types (`src/lib/github/types.ts` is a placeholder)
-- [ ] Create GitHub client (`src/lib/github/client.ts` is a placeholder)
-- [ ] Add Zod validation for GitHub responses (Zod is installed and unused)
+- [x] Define GitHub API types (`src/lib/github/types.ts`)
+- [x] Create GitHub client (`src/lib/github/client.ts`)
+- [x] Add Zod validation for GitHub responses
 - [ ] Create project metadata model (`src/lib/projects/metadata.ts` is a placeholder)
 - [ ] Create project mapper (`src/lib/projects/mapper.ts` is a placeholder)
 - [ ] Create project service (`src/lib/projects/service.ts` is a placeholder)
-- [ ] Load repositories for `GITHUB_USERNAME` (`src/lib/github/repositories.ts` is a placeholder)
-- [ ] Add server-side caching/revalidation
-- [ ] Add graceful GitHub API error handling
+- [x] Load repositories for `GITHUB_USERNAME` (`src/lib/github/repositories.ts`)
+- [x] Add server-side caching/revalidation
+- [x] Add graceful GitHub API error handling
 
 ## Phase 2 — Visual Foundation
 
@@ -110,7 +110,7 @@ Search and filter run on the normalized `Project[]` from Phase 1. They do not ca
 
 **Phase 1 — Domain and Data Architecture**
 
-Phase 0 is complete. The running app shows a placeholder home page and a placeholder repository page. Finish the project service, mapper, metadata, and GitHub client before building gallery UI.
+Phase 0 is complete. The running app shows a placeholder home page and a placeholder repository page. The GitHub client, repository queries, and response validation are in place. Finish the project service, mapper, and metadata before building gallery UI.
 
 What a new developer should treat as already decided is recorded in `DECISIONS.md`. Do not reopen those choices inside a feature branch.
 
