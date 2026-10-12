@@ -24,7 +24,7 @@
 
 ## Phase 1 — Domain and Data Architecture
 
-The `Project` domain model, GitHub access, curated metadata, mapper, and project service are implemented. Pages are still placeholders and do not call the service yet.
+The `Project` domain model, GitHub access, curated metadata, mapper, and project service are implemented. The home page calls the service. `/repositories/[name]` is still a placeholder.
 
 - [x] Define `Project` domain model (`ProjectCategory`, `ProjectGitHubInfo`, `ProjectStoryMetadata`, and `Project` in `src/types/project.ts`)
 - [x] Define GitHub API types (`src/lib/github/types.ts`)
@@ -46,20 +46,20 @@ The `Project` domain model, GitHub access, curated metadata, mapper, and project
 - [x] Build desktop sidebar
 - [x] Build mobile navigation
 - [x] Build header
-- [ ] Build hero section
-- [ ] Build statistics section
+- [x] Build hero section
+- [x] Build statistics section
 
 ## Phase 3 — Project Gallery
 
-- [ ] Build `RepositoryCard`
-- [ ] Build featured projects
-- [ ] Build project grid
-- [ ] Add technology badges
-- [ ] Add GitHub statistics
-- [ ] Add hover interactions
-- [ ] Add loading states
-- [ ] Add empty states
-- [ ] Add error states
+- [x] Build `RepositoryCard`
+- [x] Build featured projects
+- [x] Build project grid
+- [x] Add technology badges
+- [x] Add GitHub statistics
+- [x] Add hover interactions
+- [x] Add loading states
+- [x] Add empty states
+- [x] Add error states
 
 ## Phase 4 — Discovery
 
@@ -108,9 +108,9 @@ Search and filter run on the normalized `Project[]` from Phase 1. They do not ca
 
 ## Current Focus
 
-**Phase 2 — Visual Foundation**
+**Phase 4 — Discovery**
 
-The application shell is in place: sidebar, header, mobile navigation, page container, and light/dark theme. Home and `/repositories/[name]` still do not show projects. Next are the hero and statistics sections, then the gallery. Pages should call the project service and should not import `src/lib/github/`.
+The home gallery is in place: hero, statistics counted from the loaded projects, featured projects, repository cards, and loading, empty, and error states. Search, filter, and sort are not built. `/repositories/[name]` is still a placeholder. Pages call the project service and do not import `src/lib/github/`.
 
 What a new developer should treat as already decided is recorded in `DECISIONS.md`. Do not reopen those choices inside a feature branch.
 

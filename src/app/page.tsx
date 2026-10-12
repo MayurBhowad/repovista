@@ -1,14 +1,17 @@
+import { Suspense } from "react";
+import { GalleryLoading } from "@/components/home/gallery-status";
+import { Hero } from "@/components/home/hero";
+import { ProjectCollection } from "@/components/home/project-collection";
+
 export default function HomePage() {
   return (
-    <div className="max-w-2xl">
-      <p className="text-sm font-medium text-primary">Collection</p>
-      <h1 className="mt-3 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-        Explore projects, not repositories.
-      </h1>
-      <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-        A calm place to see what a project is, why it was built, and why it
-        matters.
-      </p>
+    <div className="flex flex-col gap-16 sm:gap-20">
+      <Hero />
+      <div id="projects" className="scroll-mt-24">
+        <Suspense fallback={<GalleryLoading />}>
+          <ProjectCollection />
+        </Suspense>
+      </div>
     </div>
   );
 }

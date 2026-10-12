@@ -1,6 +1,6 @@
 # RepoVista User Guide
 
-This guide describes the experience RepoVista is being built to provide. The application shell is in place: a sidebar on wider screens, a header, a menu on smaller screens, and a light/dark theme. The home page introduces the collection, and `/repositories/[name]` says the detail view is coming soon. Search, filters, cards, and case-study sections below are the intended product, not features that work today. Implementation order is in `PLAN.md`.
+This guide describes the experience RepoVista is being built to provide. The application shell is in place: a sidebar on wider screens, a header, a menu on smaller screens, and a light/dark theme. The home page is the project gallery. `/repositories/[name]` says the detail view is coming soon. Search, filters, and the case-study sections below are the intended product, not features that work today. Implementation order is in `PLAN.md`.
 
 ## What Is RepoVista?
 
@@ -27,29 +27,33 @@ A skip link is the first control when navigating with a keyboard.
 
 ## Home
 
-The home page introduces the project collection and highlights selected projects.
+The home page introduces the collection, then shows totals, featured projects, and every project as a card.
 
-Users can:
+What works today:
 
-- Browse featured projects.
-- Browse all projects.
-- Search projects.
-- Filter by category.
-- Sort projects.
-- Open a project for more details.
+- Read the introduction and jump to the projects.
+- See project, star, fork, and language totals from the projects that loaded.
+- Browse featured projects. If none are marked featured, the page says so.
+- Browse all projects in a grid.
+- Open a project card for its detail page, or open the GitHub repository.
+- See a loading state while projects are on the way, a message when there are no public repositories, and a plain-language message when GitHub cannot be reached.
+
+Search, category filters, and sorting are not available yet.
 
 ## Project Cards
 
 Each project card prioritizes human-friendly information:
 
 - Project name
-- Short description
-- Category
-- Technologies
+- Short description, or a note when one has not been written
+- Category, when one is set
+- Technologies, when any are known
 - Stars
 - Forks
-- Last updated
-- Explore action
+- Last updated, when the date can be shown
+- Project image, or a quiet placeholder when none is configured
+- Explore action, which opens the detail page
+- A GitHub link, which opens the repository in a new tab
 
 Technical GitHub information supports the story. It does not dominate the card.
 

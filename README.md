@@ -72,4 +72,4 @@ pnpm build
 
 ## Status
 
-Phase 1 (domain and data path) is complete. The application shell is in place. The home page and `/repositories/[name]` still do not show projects. Next are the hero, statistics, and gallery in [Plan](./PLAN.md). Pages should call the project service and should not read GitHub response types.
+Phase 1 (domain and data path) and the home gallery are complete. The application shell is in place. `/repositories/[name]` still does not show a project case study. Next is discovery — search, filter, and sort — in [Plan](./PLAN.md). Pages call the project service and do not read GitHub response types.
