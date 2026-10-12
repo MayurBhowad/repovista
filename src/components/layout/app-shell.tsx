@@ -15,7 +15,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="flex min-w-0 flex-1 flex-col">
         <Header />
         <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
-          <div className="mx-auto w-full max-w-6xl px-5 py-8 sm:px-8 lg:px-12 lg:py-14">
+          <div className="w-full px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
             {children}
           </div>
         </main>

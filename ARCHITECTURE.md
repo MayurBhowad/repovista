@@ -149,7 +149,7 @@ src/components/ui/               shared primitives
 
 Current routes:
 
-- `/` — home inside the application shell. Gallery content is not built yet.
+- `/` — home inside the application shell. A Server Component streams the hero immediately, then loads `Project[]` through the project service for statistics, featured projects, and the repository grid. GitHub failures render a short message from the error code. They do not show the raw API text.
 - `/repositories/[name]` — detail placeholder inside the same shell.
 
 The shell lives in `src/components/layout/`. Theme is a `dark` class on `html`, applied in the browser. Server Components do not read it.
@@ -224,6 +224,8 @@ The browser does not request GitHub data on each interaction.
 The token must never be exposed as `NEXT_PUBLIC_GITHUB_TOKEN`, passed to a Client Component, or committed. `.env.local` stays untracked. `.env.example` lists the variable names only.
 
 Treat GitHub responses as untrusted input. Validate them before they become a `Project`. The mapper also checks curated image and link values before they are copied onto `Project`, and it rebuilds a `github.com` repository URL when `html_url` is not a safe https URL.
+
+Home-page images use a site path with `next/image`, or an https URL drawn by the browser. Remote images are not given a wildcard image-optimizer pattern, so the server does not fetch arbitrary hosts on behalf of a curated URL.
 
 ## 10. Deliberate Non-Goals for V1
 

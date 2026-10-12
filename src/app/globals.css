@@ -151,6 +151,18 @@
   .shell-drawer {
     animation: shell-drawer-in 180ms ease-out;
   }
+
+  .gallery-enter {
+    animation: gallery-enter 420ms ease-out;
+  }
+}
+
+.gallery-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18.5rem), 1fr));
+}
+
+.featured-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
 }
 
 @keyframes shell-drawer-in {
@@ -159,5 +171,16 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes gallery-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

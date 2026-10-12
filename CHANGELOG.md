@@ -6,6 +6,7 @@ All meaningful project changes are recorded here.
 
 ### Added
 
+- Home project gallery in `src/components/home/`: hero, totals counted from the loaded projects, featured projects, and a responsive card grid. Cards show the curated title and description when present, category and technology badges, stars, forks, last update, and an image when one is configured. The page reads `Project` values from the project service. Loading, empty, and GitHub failure states use plain language instead of raw API errors.
 - Application shell in `src/components/layout/`: sidebar, header, mobile navigation, page container, and a light/dark theme. The first visit follows the system appearance. A later choice is stored in `localStorage` under `repovista-theme`. The shell does not load projects.
 - Server-side GitHub layer in `src/lib/github/`: authenticated requests, Zod-validated repository and language payloads, and normalized API errors. `GITHUB_TOKEN` stays on the server. The `server-only` package blocks Client Component imports.
 - Documentation system for ongoing alignment: README, architecture, plan, user guide, development guide, decision log, changelog, and contributing guide.
