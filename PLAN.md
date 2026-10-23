@@ -63,15 +63,17 @@ The `Project` domain model, GitHub access, curated metadata, mapper, and project
 
 ## Phase 4 — Discovery
 
-- [ ] Search by project name
-- [ ] Search by description
-- [ ] Search by technology/topic
-- [ ] Category filtering
-- [ ] Sorting
-- [ ] URL-based search/filter state
+- [x] Search by project name
+- [x] Search by description
+- [x] Search by technology/topic
+- [x] Category filtering
+- [x] Sorting
+- [x] URL-based search/filter state
+- [x] No-results state with a clear-filters action
+- [x] Unit tests for discovery logic (`pnpm test`, Node's built-in test runner)
 - [ ] Responsive refinement
 
-Search and filter run on the normalized `Project[]` from Phase 1. They do not call GitHub per keystroke.
+Search and filter run on the normalized `Project[]` from Phase 1. They do not call GitHub per keystroke. The logic lives in `src/lib/projects/discovery.ts`.
 
 ## Phase 5 — Project Detail
 
@@ -88,6 +90,7 @@ Search and filter run on the normalized `Project[]` from Phase 1. They do not ca
 
 - [ ] Accessibility audit
 - [ ] Keyboard navigation
+- [ ] Restore visible focus rings where `outline-none` is combined with `focus-visible:outline-2` (hero link, repository card links, gallery error link). In Tailwind v4, `outline-none` sets `--tw-outline-style: none`, which hides the ring.
 - [ ] Reduced-motion support
 - [ ] Mobile testing
 - [ ] Performance review
@@ -110,7 +113,7 @@ Search and filter run on the normalized `Project[]` from Phase 1. They do not ca
 
 **Phase 4 — Discovery**
 
-The home gallery is in place: hero, statistics counted from the loaded projects, featured projects, repository cards, and loading, empty, and error states. Search, filter, and sort are not built. `/repositories/[name]` is still a placeholder. Pages call the project service and do not import `src/lib/github/`.
+The home gallery is in place: hero, statistics counted from the loaded projects, featured projects, repository cards, and loading, empty, and error states. The "All projects" grid has search, category filters, and sorting, kept in the URL as `search`, `category`, and `sort`. Responsive refinement beyond the discovery controls is still open. `/repositories/[name]` is still a placeholder. Pages call the project service and do not import `src/lib/github/`.
 
 What a new developer should treat as already decided is recorded in `DECISIONS.md`. Do not reopen those choices inside a feature branch.
 

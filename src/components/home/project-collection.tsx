@@ -5,7 +5,7 @@ import {
   GalleryError,
   galleryErrorMessage,
 } from "@/components/home/gallery-status";
-import { ProjectGrid } from "@/components/home/project-grid";
+import { ProjectDiscovery } from "@/components/home/project-discovery";
 import { ProjectStatistics } from "@/components/home/project-statistics";
 import { getProjects, isGitHubApiError } from "@/lib/projects/service";
 import type { Project } from "@/types/project";
@@ -37,7 +37,7 @@ export async function ProjectCollection() {
     <div className="gallery-enter flex flex-col gap-16 sm:gap-20">
       <ProjectStatistics projects={load.projects} />
       <FeaturedProjects projects={featured} />
-      <ProjectGrid projects={load.projects} />
+      <ProjectDiscovery projects={load.projects} />
     </div>
   );
 }
